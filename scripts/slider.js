@@ -132,9 +132,9 @@ var laptopPictPerPage = {
 };
 
 var thirdPictPerPage = {
-	0: 1,
+	0: 6,
 	1: 1,
-	2: 6,
+	2: 1,
 	3: 2,
 	4: 1
 	
