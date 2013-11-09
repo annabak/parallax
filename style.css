@@ -1,7 +1,7 @@
 body {
 	margin: 0px;	
 	font-size: 11pt;
-	color: white;
+	color: #c6c6c7;
 	font-family: 'Play', sans-serif;
 }
 
@@ -132,7 +132,7 @@ a {
 }
 
 #menu a {
-	color: #d7f91d;
+	color: #FFFFFF;
 	text-decoration: none;
 	margin-right: 25px;
 	font-size: 10pt;
