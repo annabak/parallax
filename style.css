@@ -291,6 +291,10 @@ a {
 	max-width: 900px;
 }
 
+.descriptions {
+	min-height: 130px;
+}
+
 #third {
     background-color: black;
 }
@@ -301,6 +305,10 @@ a {
 
 #fifth {
 	background-color: black;
+}
+
+#fifth .descriptions {
+	min-height: 300px;
 }
 
 #sixth {

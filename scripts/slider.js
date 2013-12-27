@@ -1,22 +1,26 @@
 
 /* Slider class, maintain proper pagination */
-function Slider(id, pictStruct, dark) {
+function Slider(id, pictStruct, dark, autoRotate) {
 	this.id_ = id;
 	this.pictStruct_ = pictStruct;
 	this.dark_ = dark;
-	this.activePicture_ = 0;	
+	this.activePicture_ = 0;
+	this.autoRotate_ = autoRotate;
+	this.rotatePeriod_ = 5000;	// period between slides in ms
+	this.timeoutID_ = null;
 
 	this.pictures_ = 0;
 	for (var i in this.pictStruct_) {
 		this.pictures_ += this.pictStruct_[i];
 	}
+	
+	if (this.autoRotate_)
+		this.timeoutID_ = setTimeout(this.nextPict.bind(this), this.rotatePeriod_);
 }
 
-Slider.prototype.prevPict = function(clicked) {
-	if (clicked)
-		$(clicked).siblings('div.slider').children('a.slidesjs-previous').click();
-	else
-		$('#' + this.id_ + 'SliderLeft' + 'Dummy').click();
+Slider.prototype.prevPict = function() {
+	$('#' + this.id_ + 'Slider').children('a.slidesjs-previous').click();
+	
 	this.activePicture_--;
 	if (this.activePicture_ < 0)
 		this.activePicture_ = this.pictures_ -1;
@@ -24,15 +28,17 @@ Slider.prototype.prevPict = function(clicked) {
 	return false;
 }
 
-Slider.prototype.nextPict = function(clicked) {
-	if (clicked)
-		$(clicked).siblings('div.slider').children('a.slidesjs-next').click();
-	else
-		$('#' + this.id_ + 'SliderRight' + 'Dummy').click();
+Slider.prototype.nextPict = function() {
+	$('#' + this.id_ + 'Slider').children('a.slidesjs-next').click();
+
 	this.activePicture_++;
 	if (this.activePicture_ == this.pictures_)
 		this.activePicture_ = 0;
 	this.pageClickByNo();
+	
+	if (this.autoRotate_)
+		this.timeoutID_ = setTimeout(this.nextPict.bind(this), this.rotatePeriod_);
+	
 	return false;
 }
 
@@ -104,20 +110,29 @@ function getID(thisObj) {
 	return $(thisObj).closest('div.panel').attr('id');
 }
 
+function stopAutoRotate(id) {
+	window[id+'Slider'].autoRotate_ = false;	// stop auto rotating after user click
+	if (window[id+'Slider'].timeoutID_ != null)
+		clearTimeout(window[id+'Slider'].timeoutID_);
+}
+
 /* find object name and click apriopriate object's method */
 function pageClick(thisObj) {
 	var id = getID(thisObj);
+	stopAutoRotate(id);
 	window[id+'Slider'].pageClick(thisObj);
 }
 
 function prevPict(thisObj) {
 	var id = getID(thisObj);
-	window[id+'Slider'].prevPict(thisObj);	
+	stopAutoRotate(id);
+	window[id+'Slider'].prevPict();	
 }
 
 function nextPict(thisObj) {
 	var id = getID(thisObj);
-	window[id+'Slider'].nextPict(thisObj);	
+	stopAutoRotate(id);
+	window[id+'Slider'].nextPict();
 }
 
 /* Number of pictures per single page */
@@ -172,10 +187,10 @@ var seventhPictPerPage = {
 };
 
 /* slider instances */
-var laptopSlider = new Slider('laptop', laptopPictPerPage, true);
-var thirdSlider = new Slider('third', thirdPictPerPage, false);
-var fourthSlider = new Slider('fourth', fourthPictPerPage, true);
-var fifthSlider = new Slider('fifth', fifthPictPerPage, false);
-var sixthSlider = new Slider('sixth', sixthPictPerPage, true);
-var seventhSlider = new Slider('seventh', seventhPictPerPage, false);
+var secondSlider = new Slider('second', laptopPictPerPage, true, true);
+var thirdSlider = new Slider('third', thirdPictPerPage, false, true);
+var fourthSlider = new Slider('fourth', fourthPictPerPage, true, true);
+var fifthSlider = new Slider('fifth', fifthPictPerPage, false, true);
+var sixthSlider = new Slider('sixth', sixthPictPerPage, true, false);
+var seventhSlider = new Slider('seventh', seventhPictPerPage, false, true);
 

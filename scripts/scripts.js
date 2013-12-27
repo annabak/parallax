@@ -39,7 +39,7 @@ $( document ).ready(function() {
 	var left = ($(document).width() - $('#centralSquare').width()) / 2 + CENTRAL_SQUARE_SHIFT;
 	$('#centralSquare').css('left', left + 'px');
 	
-	$('#laptopSlider').slidesjs({
+	$('#secondSlider').slidesjs({
 		width: LAPTOP_SLIDER_WIDTH,
 		height: LAPTOP_SLIDER_HEIGHT
 	});
@@ -77,7 +77,7 @@ $( document ).ready(function() {
 
 // $( window ).resize(function() {
 // 	if ($(window).width() < LAPTOP_SLIDER_WIDTH) {
-// 		$('#laptopSlider').slidesjs({
+// 		$('#secondSlider').slidesjs({
 // 			width: $(window).width(),
 // 			height: $(window).width() / LAPTOP_SLIDER_WIDTH * LAPTOP_SLIDER_HEIGHT
 // 		});
