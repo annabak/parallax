@@ -162,10 +162,9 @@ a {
 	background-image: url(pict/stopka.png);
 	background-position: 50% 0;
 	background-repeat: no-repeat;
-	height:350px;
+	height:322px;
 	color: #384ab6;
 	width: 100%;
-	margin-bottom: 280px;
 }
 
 #footerCV {
@@ -314,6 +313,7 @@ a {
 #sixth {
 	background-color: white;
 	background-image: url(pict/telewizor_tlo.jpg);
+	background-position: 50% 0;
 	background-repeat: no-repeat;
 }
 
@@ -330,6 +330,7 @@ a {
 
 #seventh {
 	background-color: black;
+	padding-bottom: 200px;
 }
 
 .grayscale {
