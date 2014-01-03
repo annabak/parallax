@@ -313,6 +313,8 @@ a {
 
 #sixth {
 	background-color: white;
+	background-image: url(pict/telewizor_tlo.jpg);
+	background-repeat: no-repeat;
 }
 
 .tvDescription {
