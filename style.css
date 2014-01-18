@@ -66,7 +66,8 @@ a {
 #firstText {
 	position: relative;
 	top: 80px;
-	width: 900px;
+	max-width: 900px;
+	width:100%;
 }
 
 #firstText .subtitle {
@@ -132,10 +133,14 @@ a {
 }
 
 #menu a {
-	color: #FFFFFF;
+	color: #EBEBEB;
 	text-decoration: none;
 	margin-right: 25px;
 	font-size: 10pt;
+}
+
+#menu a:hover {
+	color: #FFFFFF;
 }
 
 #menu .last {
@@ -145,7 +150,8 @@ a {
 #centerButtons {
 	margin-left:auto; 
 	margin-right:auto; 
-	width:900px;
+	max-width:900px;
+	width: 100%;
 }
 
 #opa {
@@ -180,12 +186,14 @@ a {
 #laptop {
 	background-image: url(pict/laptop.png);
 	background-repeat: no-repeat;
-	width: 980px;
+	max-width: 980px;
+	width: 100%;
 	height: 586px;
 }
 
 #secondText {
-	width: 900px;
+	max-width: 900px;
+	width:100%;
 	margin-top: 100px;
 }
 
@@ -396,7 +404,8 @@ a {
 #tiles {
 	position: absolute;
 	top: 90px;
-	width: 900px;
+	max-width: 750px;
+	width:100%;
 	height: 900px;
 	left: 0px;
 	right: 0px;
@@ -423,21 +432,35 @@ a {
 }
 
 .col1 {
-	left: 193px;
+	left: 118px;
 }
 
 .col2 {
-	left: 313px;
+	left: 238px;
 }
 
 .col3 {
-	left: 433px;
+	left: 358px;
 }
 
 .col4 {
-	left: 553px;
+	left: 478px;
 }
 
 .col5 {
-	left: 673px;
+	left: 598px;
 }
+
+
+@media all and (max-width: 1000px) {
+	#laptop {
+		background-image: none;
+	}
+	
+	.centralLayer {
+		width: 95%;
+	}
+	
+
+}
+
