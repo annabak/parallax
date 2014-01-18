@@ -1,6 +1,6 @@
 
 /* Slider class, maintain proper pagination */
-function Slider(id, pictStruct, dark, autoRotate) {
+function Slider(id, width, height, pictStruct, dark, autoRotate) {
 	this.id_ = id;
 	this.pictStruct_ = pictStruct;
 	this.dark_ = dark;
@@ -14,27 +14,30 @@ function Slider(id, pictStruct, dark, autoRotate) {
 		this.pictures_ += this.pictStruct_[i];
 	}
 	
+	$('#' + id + 'Slider').slidesjs({
+		width: width,
+		height: height,
+		callback: {
+			complete: this.complete.bind(this)
+		}		
+	});	
+	
 	if (this.autoRotate_)
 		this.timeoutID_ = setTimeout(this.nextPict.bind(this), this.rotatePeriod_);
 }
 
+Slider.prototype.complete = function(number) {
+	this.activePicture_ = number - 1;
+	this.pageClickByNo();
+}
+
 Slider.prototype.prevPict = function() {
 	$('#' + this.id_ + 'Slider').children('a.slidesjs-previous').click();
-	
-	this.activePicture_--;
-	if (this.activePicture_ < 0)
-		this.activePicture_ = this.pictures_ -1;
-	this.pageClickByNo();
 	return false;
 }
 
 Slider.prototype.nextPict = function() {
 	$('#' + this.id_ + 'Slider').children('a.slidesjs-next').click();
-
-	this.activePicture_++;
-	if (this.activePicture_ == this.pictures_)
-		this.activePicture_ = 0;
-	this.pageClickByNo();
 	
 	if (this.autoRotate_)
 		this.timeoutID_ = setTimeout(this.nextPict.bind(this), this.rotatePeriod_);
@@ -102,7 +105,6 @@ Slider.prototype.pageClick = function(clicked) {
 	this.activePicture_ = pictNo;
 	$('#' + this.id_ + 'Slider' + ' .slidesjs-pagination a')[pictNo].click();
 	this.highlightPage(clicked);
-	this.showText(pageNo);
 }
 
 /* find object id from <div class="panel"> parent */
@@ -186,11 +188,5 @@ var seventhPictPerPage = {
 
 };
 
-/* slider instances */
-var secondSlider = new Slider('second', laptopPictPerPage, true, true);
-var thirdSlider = new Slider('third', thirdPictPerPage, false, true);
-var fourthSlider = new Slider('fourth', fourthPictPerPage, true, true);
-var fifthSlider = new Slider('fifth', fifthPictPerPage, false, true);
-var sixthSlider = new Slider('sixth', sixthPictPerPage, true, false);
-var seventhSlider = new Slider('seventh', seventhPictPerPage, false, true);
+
 

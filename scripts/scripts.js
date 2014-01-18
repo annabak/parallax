@@ -28,6 +28,13 @@ var rectPictMarginTop;
 
 var tiles = {};
 
+/* slider instances */
+var secondSlider;
+var thirdSlider;
+var fourthSlider;
+var fifthSlider;
+var sixthSlider;
+var seventhSlider;
 
 $( document ).ready(function() {
 	// add slow scroll on link click
@@ -39,36 +46,13 @@ $( document ).ready(function() {
 	var left = ($(document).width() - $('#centralSquare').width()) / 2 + CENTRAL_SQUARE_SHIFT;
 	$('#centralSquare').css('left', left + 'px');
 	
-	$('#secondSlider').slidesjs({
-		width: LAPTOP_SLIDER_WIDTH,
-		height: LAPTOP_SLIDER_HEIGHT
-	});
-    
-    $('#thirdSlider').slidesjs({
-        width: SLIDER_WIDTH,
-        height: SLIDER_HEIGHT
-    });    
-
-    $('#fourthSlider').slidesjs({
-        width: SLIDER_WIDTH,
-        height: SLIDER_HEIGHT
-    });
+	secondSlider = new Slider('second', LAPTOP_SLIDER_WIDTH, LAPTOP_SLIDER_HEIGHT, laptopPictPerPage, true, true);
+	thirdSlider = new Slider('third', SLIDER_WIDTH, SLIDER_HEIGHT, thirdPictPerPage, false, true);
+	fourthSlider = new Slider('fourth', SLIDER_WIDTH, SLIDER_HEIGHT, fourthPictPerPage, true, true);
+	fifthSlider = new Slider('fifth', SLIDER_WIDTH, SLIDER_HEIGHT, fifthPictPerPage, false, true);
+	sixthSlider = new Slider('sixth', TV_SLIDER_WIDTH, TV_SLIDER_HEIGHT, sixthPictPerPage, true, false);
+	seventhSlider = new Slider('seventh', SLIDER_WIDTH, SLIDER_HEIGHT, seventhPictPerPage, false, true);
 	
-    $('#fifthSlider').slidesjs({
-        width: SLIDER_WIDTH,
-        height: SLIDER_HEIGHT
-    });
-	
-    $('#sixthSlider').slidesjs({
-        width: TV_SLIDER_WIDTH,
-        height: TV_SLIDER_HEIGHT
-    });
-
-    $('#seventhSlider').slidesjs({
-        width: SLIDER_WIDTH,
-        height: SLIDER_HEIGHT
-    });
-
 	// remember initial class values
 	rectTurnLeftWidth = $('.rectTurnLeft').css("width"); 
 	rectTurnLeftHeight = $('.rectTurnLeft').css("height");
@@ -83,9 +67,6 @@ $( document ).ready(function() {
 // 		});
 // 	}
 // });
-
-
-
 
 
 
